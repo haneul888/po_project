@@ -7,7 +7,7 @@ rcParams['font.family'] = 'AppleGothic'
 data = pd.read_csv('예산편성현황(총액).csv')
 data['정부안금액(천원)'] = data['정부안금액(천원)'].str.replace(',', '').astype(int)
 
-# 상위 5개
+# Top 5
 grouped_data = (
     data
     .groupby('소관명')['정부안금액(천원)']
@@ -15,7 +15,7 @@ grouped_data = (
     .head(5)
 )
 
-# 1억 원 단위로 값 줄이기
+# Reducing Units
 scaled_values = grouped_data / 100_000_000
 
 plt.figure(figsize=(10,6))
